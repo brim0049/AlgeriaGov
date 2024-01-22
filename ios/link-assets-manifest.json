@@ -1,0 +1,17 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/Baloo-Regular.ttf",
+      "sha1": "95576f01904f5cd68c341c9594bf4cbccaaea180"
+    },
+    {
+      "path": "assets/fonts/Kreon-Light.ttf",
+      "sha1": "d0d355454b543bce34d07e735d050a264658bb72"
+    },
+    {
+      "path": "assets/fonts/kreon.regular.ttf",
+      "sha1": "c2b44cbde79a1c22aa8ed25b98193cc1cf6b255e"
+    }
+  ]
+}
