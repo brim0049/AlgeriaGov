@@ -6,10 +6,12 @@ import {
     Image,
   } from 'react-native';
   import React from 'react';
+  import { useNavigation } from '@react-navigation/native';
 
 import {Button} from '@react-native-material/core';
 
-const RenderButtons = ({ activeIndex, handlePrev, handleNext, sections }) => {
+const RenderButtons = ({ activeIndex, handlePrev, handleNext, sections, handleSignup, signupWithGoogle,handleEnd }) => {
+     const navigation = useNavigation();
 
     if (activeIndex === 0) {
       return (
@@ -18,10 +20,11 @@ const RenderButtons = ({ activeIndex, handlePrev, handleNext, sections }) => {
             title="S'inscrire"
             color="#1B4242"
             tintColor="white"
-            onPress={handleNext}
+            onPress={handleSignup}
             padding={5}
             marginRight={80}
             marginLeft={80}
+            marginTop={-10}
           />
           <View
             style={{
@@ -35,9 +38,11 @@ const RenderButtons = ({ activeIndex, handlePrev, handleNext, sections }) => {
                 textAlign: 'right',
                 color: '#6D9886',
               }}>{`Vous avez déjà un compte? `}</Text>
-            <Text style={{textDecorationLine: 'underline', color: '#ff0000'}}>
-              Se connecter
-            </Text>
+            <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}>
+    <Text style={{ textDecorationLine: 'underline', color: '#ff0000' }}>
+      Se connecter
+    </Text>
+  </TouchableOpacity>
           </View>
           <View style={styles.containerLine}>
             <View style={styles.line} />
@@ -46,7 +51,6 @@ const RenderButtons = ({ activeIndex, handlePrev, handleNext, sections }) => {
           </View>
           <View style={styles.containerFooter}>
             <TouchableOpacity
-              onPress={() => console.log('Outlook Pressed')}
               style={styles.background}>
               <Image
                 source={require('../../assets/outlook-icon.png')}
@@ -54,16 +58,17 @@ const RenderButtons = ({ activeIndex, handlePrev, handleNext, sections }) => {
               />
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => console.log('Google Pressed')}
-              style={styles.background}>
+              style={styles.background}
+              onPress={signupWithGoogle}
+              >
               <Image
                 source={require('../../assets/google-icon.png')}
                 style={styles.icon}
               />
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => console.log('Facebook Pressed')}
-              style={styles.background}>
+              style={styles.background}
+              >
               <Image
                 source={require('../../assets/yahoo-icon.png')}
                 style={styles.icon}
@@ -95,6 +100,7 @@ const RenderButtons = ({ activeIndex, handlePrev, handleNext, sections }) => {
             tintColor="white"
             onPress={handleNext}
             padding={5}
+
           />
         </View>
       );
@@ -107,12 +113,15 @@ const RenderButtons = ({ activeIndex, handlePrev, handleNext, sections }) => {
             tintColor="white"
             onPress={handlePrev}
             padding={5}
+  
+
           />
 
           <Button
             title="  Terminer  "
             color="#1B4242"
             tintColor="white"
+            onPress={handleEnd}
             padding={5}
           />
         </View>

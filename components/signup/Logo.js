@@ -19,7 +19,6 @@ const LogoSignup = () => {
     </View>
   );
 };
-
 const styles = {
     slogo: {
         textAlign: 'center',

@@ -1,11 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import SegmentedControl from '@react-native-segmented-control/segmented-control';
-import { Input, Image } from '@rneui/themed'; // Import Image from the correct library
+import { Input, Image, Text } from '@rneui/themed'; // Import Image from the correct library
 
-const SegmentForm = () => {
+const SegmentForm = ({ onValuesChange, inputErrorsSection4, setInputErrorsSection4 }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
-
+  const [formValues, setFormValues] = useState({
+    nin: '',
+    passport: '',
+    address: '',
+    postalCode: '',
+  });
+  const handleValuesChange = (field, value) => {
+    setFormValues(prevValues => ({
+      ...prevValues,
+      [field]: value,
+    }));
+  };
+  
+  useEffect(() => {
+    onValuesChange(formValues);
+  }, [formValues, onValuesChange]);
   // Définir une fonction pour rendre le champ approprié en fonction de l'index sélectionné
   const renderSegmentContent = () => {
     if (selectedIndex === 0) {
@@ -18,16 +33,17 @@ const SegmentForm = () => {
           keyboardType="numeric"
           leftIcon={{
             type: 'font-awesome',
-            name: 'user',
+            name: 'id-card',
             color: '#1B4242',
           }}
           inputStyle={{color: '#1B4242'}}
-          inputContainerStyle={{
-            borderColor: '#1B4242',
-            borderBottomWidth: 3,
-            marginBottom: -15,
-          }}
+          inputContainerStyle={[styles.inputContainer, inputErrorsSection4['Numéro d\'identification national (NIN)'] && {borderColor: 'red'}]}
           labelStyle={{color: '#1B4242'}}
+          value={formValues.nin}
+          onChangeText={(text) => handleValuesChange('nin', text)}
+          errorMessage={inputErrorsSection4['Numéro d\'identification national (NIN)']}
+          errorStyle={styles.errorStyle}
+
         />
         <Input
           label="Numéro de carte national / Passeport"
@@ -35,48 +51,50 @@ const SegmentForm = () => {
           keyboardType="numeric"
           leftIcon={{
             type: 'font-awesome',
-            name: 'user',
+            name: 'keyboard-o',
             color: '#1B4242',
           }}
           inputStyle={{color: '#1B4242'}}
-          inputContainerStyle={{
-            borderColor: '#1B4242',
-            borderBottomWidth: 3,
-            marginBottom: -15,
-          }}
+          inputContainerStyle={[styles.inputContainer, inputErrorsSection4['Numéro de carte national / Passeport'] && {borderColor: 'red'}]}
           labelStyle={{color: '#1B4242'}}
+          value={formValues.passport}
+          onChangeText={(text) => handleValuesChange('passport', text)}
+          errorMessage={inputErrorsSection4['Numéro de carte national / Passeport']}
+          errorStyle={styles.errorStyle}
+
         />
                   <Input
-            label="Nom en Arabe"
-            placeholder="Nom en Arabe"
+            label="Adresse"
+            placeholder="Adresse"
             leftIcon={{
               type: 'font-awesome',
-              name: 'user',
+              name: 'home',
               color: '#1B4242',
             }}
             inputStyle={{ color: '#1B4242' }}
-            inputContainerStyle={{
-              borderColor: '#1B4242',
-              borderBottomWidth: 3,
-              marginBottom: -15,
-            }}
+            inputContainerStyle={[styles.inputContainer, inputErrorsSection4['Adresse'] && {borderColor: 'red'}]}
             labelStyle={{ color: '#1B4242' }}
+            onChangeText={text => handleValuesChange('address', text)}
+            errorMessage={inputErrorsSection4['Adresse']}
+            errorStyle={styles.errorStyle}
+
           />
           <Input
-            label="Prénom en Arabe"
-            placeholder="Prénom en Arabe"
+            label="Code postal"
+            placeholder="Code postal"
+            keyboardType="numeric"
             leftIcon={{
               type: 'font-awesome',
-              name: 'user',
+              name: 'map-marker',
               color: '#1B4242',
             }}
             inputStyle={{ color: '#1B4242' }}
-            inputContainerStyle={{
-              borderColor: '#1B4242',
-              borderBottomWidth: 3,
-              marginBottom: -15,
-            }}
+            inputContainerStyle={[styles.inputContainer, inputErrorsSection4['Code postal'] && {borderColor: 'red'}]}
             labelStyle={{ color: '#1B4242' }}
+             onChangeText={text => handleValuesChange('postalCode', text)}
+             errorMessage={inputErrorsSection4['Code postal']}
+             errorStyle={styles.errorStyle}
+
           />
         </View>
       );
@@ -103,7 +121,7 @@ const SegmentForm = () => {
     <View style={styles.container}>
       <SegmentedControl
       style={{height:50}}
-      
+      backgroundColor = '#F8EFEF'
         values={['Manuel', 'Passeport', 'Carte nationale']}
         selectedIndex={selectedIndex}
         onChange={(event) => {
@@ -115,13 +133,23 @@ const SegmentForm = () => {
   );
 };
 
+
 const styles = StyleSheet.create({
+  inputContainer: {
+    borderColor: '#1B4242',
+    borderBottomWidth: 3,
+    marginBottom: -15,
+  },
   container: {
     padding: 16,
   },
   form: {
     marginVertical: 16,
   },
+  errorStyle: {
+    marginTop: 15, 
+  },
+
 });
 
 export default SegmentForm;

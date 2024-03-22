@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "764473570697",
+    "project_id": "govdz-30f7f",
+    "storage_bucket": "govdz-30f7f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:764473570697:android:1e9f97cd9948ca40c99d58",
+        "android_client_info": {
+          "package_name": "com.algeria"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "764473570697-f10icq9p4gu6uki1lb00jq0j6h3rgmue.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.algeria",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "764473570697-nq57d471rbg8tios5fp2ir0saip2g5cs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0RDCucbXdIk23BWaigJLDWBrNyq9tIlQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "764473570697-nq57d471rbg8tios5fp2ir0saip2g5cs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

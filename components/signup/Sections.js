@@ -4,7 +4,7 @@ const sections = [
       inputs: [
         'Adresse courriel',
         'Mot de passe',
-        'Confirmation de mot de passe ',
+        'Confirmation de mot de passe',
       ],
     },
     {
